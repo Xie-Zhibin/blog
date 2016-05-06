@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>关于网站</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="http://7xtgpc.com2.z0.glb.clouddn.com/favicon.png">
+    <link rel="stylesheet" href="http://7xtgpc.com2.z0.glb.clouddn.com/amazeui.min.css" />
+    <style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1500px;
+        }
+    }
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+
+    .blog-main {
+        padding: 20px 0;
+    }
+
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+
+    .blog-meta a {
+        color: #27ae60;
+    }
+
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+
+    .blog-team li {
+        padding: 4px;
+    }
+
+    .blog-team img {
+        margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .authorinfo li {
+        width: 12%;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="am-topbar">
+        <h1 class="am-topbar-brand" style="padding:0;line-height: 0;"><a href="/"><img src="http://7xtgpc.com2.z0.glb.clouddn.com/logo.png"></a></h1>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="/static/coding.html?id=1" id="coding">编程</a></li>
+                <li><a href="/static/others.html?id=2" id="others">杂谈</a></li>
+                <li><a href="/static/messages.html">留言板</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a style="color: #0e90d2;" class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          MORE <span class="am-icon-caret-down"></span>
+        </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-dropdown-header">MORE</li>
+                        <li><a href="/static/allarts.html" id="all">所有文章</a></li>
+                        <li><a href="/static/author.html">关于作者</a></li>
+                        <li class="am-active"><a href="/static/website.html">关于网站</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" style="margin-left: 0;margin-right: 2px;padding-left: 0;padding-right: 0;">
+                <span id="welcome">welcome!</span>
+            </ul>
+        </div>
+    </header>
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-md-8">
+            <section class="am-panel am-panel-success">
+                <header class="am-panel-hd">
+                    <h3 class="am-panel-title">网站整体结构</h3>
+                </header>
+                <ul style="list-style: none;width: 95%;">
+                    <li>
+                        <pre class="page-404">
+
+            UI框架:Amaze UI
+            |
+    前端----|模板引擎:Handlebars
+    |       |
+    |       api调用:原生JavaScript
+    |
+----|
+    |       反向代理服务器:Nginx
+    |       |
+    |       后端语言:Python
+    后端----|
+            后端框架:Flask
+            |
+            数据库:MySQL
+
+                        </pre>
+                    </li>
+                </ul>
+            </section>
+            <section class="am-panel am-panel-secondary">
+                <header class="am-panel-hd">
+                    <h3 class="am-panel-title">功能介绍</h3>
+                </header>
+                <div class="am-panel-bd">
+                    不得不说，前端的飞速发展让让我们受益颇丰，各种前端UI框架、JavaScript库不断涌现，在很大程度上方便了像我一样并不太了解前端技术的后端开发者。
+                    <br />
+                    <br /> 经过一番选择，UI框架选用了国产的Amaze UI,主要原因是它足够轻量级，有足够的组件给我搭建。也曾想过用Bootstrap,但后来发现它对我来说体积过于庞大、功能过于强大，我等并不能很好得驾驭，遂决心放弃Bootstrap选用国产的Amaze UI。
+                    <br />
+                    <br /> Amaze UI 是一个开源的HTML5跨屏前端UI框架，对于浏览器兼容性，经作者测试，能很好地兼容Chrome Firefox Safari三大主流浏览器，基本支持一些国产浏览器，因此也在此建议用户使用主流浏览器访问本网站以获得更好的体验。另外，虽然Amaze UI写了响应式，支持移动端，但由于有部分布局和js是作者自己写的，没有过多地考虑浏览器兼容问题，所以有些页面在移动端可能会出现问题，所以也不建议用移动端访问本站。使用UI框架好处在于可以以搭积木的形式拼接好每一个网页，修改部分只在少数，并且不用去考虑让每一个前端开发者都头疼的浏览器兼容性问题，大大节省了我的时间，当然，很显著的弊端就是不能很好地去设计自己真正想要的页面。
+                    <br />
+                    <br /> Handlebars是一个很好的JavaScript语义模板库，通过对view和data的分离来快速构建Web模板，非常容易上手，对JS基本不懂的我都能轻易使用。用这个库最大的好处在于可以让一个人完全实现前后端分离，后台功能全部由api的形式给出，如此大大减少了后端的任务，但同时也加大了前端工作难度，最重要的是在一定程度上提高了用户体验。
+                    <br />
+                    <br /> 如此一来，很多功能都被搬到了客户端，以致服务端的压力可能会小于客户端。估计了一下，整个网站的JS代码可能已经超过了Python代码，主要是用了较多的ajax异步处理，然而作者写的JS实在太烂，相信可以优化的空间还有很多，欢迎诸位指出。
+                    <br />
+                    <br /> 后端语言，框架，数据库没有别的选择，因为一直学的都是 Python + Flask + MySQL 做web后端，暂未尝试过其他工具。
+                    <br />
+                    <br /> 网站服务器采用了腾讯云服务器。为了提高加载速度，图片等静态资源存放在七牛云，juqery handlebars 等js类库在 <a href="http://www.bootcdn.cn/">Bootstrap中文网开源项目免费 CDN 服务</a> 中下载。
+                    <br />
+                    <br /> 网站logo由作者的一个学习绘画设计的朋友专门设计，在此特别鸣谢。
+                    <br />
+                    <br /> 最后希望诸位能在这里发现一些有价值的东西，谢谢。
+                </div>
+            </section>
+        </div>
+        <div class="am-u-md-4 blog-sidebar">
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-warning">
+                    <div class="am-panel-hd">网站初衷</div>
+                    <div class="am-panel-bd">
+                        <p>从去年就有搭建个人网站的想法，也尝试着写过原型，苦于当时能力有限，很多功能不能实现。恰逢五一三天假期，遂决定趁此机会实施这个"蓄谋已久"的计划。
+                            <br />
+                            <br /> 搭建这个网站的主要目的是为了写文章与诸位分享交流，同时实践和检验现在所学的知识。
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <footer class="blog-footer">
+        <p>island 的个人网站
+            <br/>
+            <small>
+                &copy; 2016. Power by Python. 托管于
+                <a href="http://www.qcloud.com/" target="_blank">腾讯云</a>
+                <span>&</span>
+                <a href="http://www.qiniu.com/" target="_blank">七牛云存储</a>
+            </small>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/amazeui/2.5.2/js/amazeui.min.js"></script>
+    <script src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="assets/js/userdefined.js"></script>
+    <script type="text/javascript">
+    newestArts();
+    greeting();
+    </script>
+</body>
+
+</html>

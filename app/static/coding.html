@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>coding</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="http://7xtgpc.com2.z0.glb.clouddn.com/favicon.png">
+    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <script src="assets/js/userdefined.js"></script>
+    <style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1500px;
+        }
+    }
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+
+    @media (max-width: 641px) {
+        .blog-sidebar {
+            display: none;
+        }
+    }
+
+    .blog-main {
+        padding: 20px 0;
+    }
+
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+
+    .blog-meta a {
+        color: #27ae60;
+    }
+
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+
+    .blog-team li {
+        padding: 4px;
+    }
+
+    .blog-team img {
+        margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .authorinfo li {
+        width: 12%;
+    }
+
+    iframe {
+        width: 100%;
+    }
+
+    #section {
+        height: 300px;
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="am-topbar">
+        <h1 class="am-topbar-brand" style="padding:0;line-height: 0;"><a href="/"><img src="http://7xtgpc.com2.z0.glb.clouddn.com/logo.png"></a></h1>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="/static/index.html">首页</a></li>
+                <li class="am-active"><a id="coding" href="#">编程</a></li>
+                <li><a id="others" href="/static/others.html?id=2">杂谈</a></li>
+                <li><a href="/static/messages.html">留言板</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          MORE <span class="am-icon-caret-down"></span>
+        </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-dropdown-header">MORE</li>
+                        <li><a href="/static/allarts.html">所有文章</a></li>
+                        <li><a href="/static/author.html">关于作者</a></li>
+                        <li><a href="/static/website.html">关于本站</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" style="margin-left: 0;margin-right: 2px;padding-left: 0;padding-right: 0;">
+                <span id="welcome">welcome!</span>
+            </ul>
+        </div>
+    </header>
+
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-md-8">
+            <div>
+                <section class="am-panel am-panel-success" id="section" style="display: block;">
+                    <div id="loading" style="height: 300px;width: 100%">
+                        <div style="margin: 134px 45%">
+                            <img src="http://7xtgpc.com2.z0.glb.clouddn.com/loading.gif" />
+                        </div>
+                    </div>
+                    <iframe src="" id="external-frame" onload=""></iframe>
+                </section>
+                <div style="float: right;">
+                    <button onclick="unfload()" type="button" class="am-btn am-btn-success am-round am-btn-xs" id="unfload">展开</button>
+                    <button onclick="fload()" style="display: none;" type="button" class="am-btn am-btn-secondary am-round am-btn-xs" id="fload">收起</button>
+                </div>
+            </div>
+            <div style="width: 80%;margin: 0 auto;">
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" data-thread-key="coding" data-title="" data-url=""></div>
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                //
+                var commtesBox = document.getElementsByClassName("ds-thread")[0];
+                var arg = location.search;
+                var id = arg.split("=")[1];
+                commtesBox.setAttribute("data-title",id)
+                //
+                var duoshuoQuery = {
+                    short_name: "zhibinnet"
+                };
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';
+                    ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
+        </div>
+        <div class="am-u-md-4 blog-sidebar">
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-default">
+                    <div class="am-panel-hd">编程相关<span id="coding_num"></span></div>
+                    <!-- 渲染区 -->
+                    <ul class="am-list blog-list" id="render_2">
+                        <li style="text-align: center;">
+                            <img src="http://7xtgpc.com2.z0.glb.clouddn.com/loading.gif" />
+                        </li>
+                        <script type="text/x-handlebars-template" id="new_arts">
+                            {{#each arts}}
+                            <li>
+                                <a href="/static/{{type}}.html?id={{id}}">{{title}}</a>
+                                <span class="am-badge am-badge-success am-round" style="float: right;margin-right: 5px;">{{type}}</span>
+                                <span style="float: right;">{{time}} &nbsp;</span>
+                                <div style="clear: both;"></div>
+                            </li>
+                            {{/each}}
+                        </script>
+                    </ul>
+                    <!-- end -->
+                </section>
+            </div>
+        </div>
+    </div>
+    <footer class="blog-footer">
+        <p>island 的个人网站
+            <br/>
+            <small>
+        &copy; 2016. Power by Python. 托管于
+        <a href="http://www.qcloud.com/" target="_blank">腾讯云</a>
+        <span>&</span>
+        <a href="http://www.qiniu.com/" target="_blank">七牛云存储</a>
+      </small>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/amazeui/2.5.2/js/amazeui.min.js"></script>
+    <script src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script type="text/javascript">
+    newestArts();
+    artList("type=coding");
+    getArt("articles/coding/");
+    num("type=coding");
+    greeting();
+    </script>
+</body>
+
+</html>

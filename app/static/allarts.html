@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>所有文章</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="http://7xtgpc.com2.z0.glb.clouddn.com/favicon.png">
+    <link rel="stylesheet" href="http://7xtgpc.com2.z0.glb.clouddn.com/amazeui.min.css" />
+    <style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1500px;
+        }
+    }
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+
+    .blog-main {
+        padding: 20px 0;
+    }
+
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+
+    .blog-meta a {
+        color: #27ae60;
+    }
+
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+
+    .blog-team li {
+        padding: 4px;
+    }
+
+    .blog-team img {
+        margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .authorinfo li {
+        width: 12%;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="am-topbar">
+        <h1 class="am-topbar-brand" style="padding:0;line-height: 0;"><a href="/"><img src="http://7xtgpc.com2.z0.glb.clouddn.com/logo.png"></a></h1>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="/static/coding.html?id=1" id="coding">编程</a></li>
+                <li><a href="/static/others.html?id=2" id="others">杂谈</a></li>
+                <li><a href="/static/messages.html">留言板</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a style="color: #0e90d2;" class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          MORE <span class="am-icon-caret-down"></span>
+        </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-dropdown-header">MORE</li>
+                        <li class="am-active"><a href="/static/allarts.html" id="all">所有文章</a></li>
+                        <li><a href="/static/author.html">关于作者</a></li>
+                        <li><a href="/static/website.html">关于本站</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" style="margin-left: 0;margin-right: 2px;padding-left: 0;padding-right: 0;">
+                <span id="welcome">welcome!</span>
+            </ul>
+        </div>
+    </header>
+
+    <div class="am-g am-g-fixed blog-g-fixed">
+        <div class="am-u-md-8">
+            <!-- 渲染区 -->
+            <div id="render_1">
+                <article>
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top: 0;">
+                        <div class="am-list-news-bd">
+                            <ul class="am-list" id="allArticles">
+                                <li style="text-align: center;">
+                                    <img src="http://7xtgpc.com2.z0.glb.clouddn.com/loading.gif" />
+                                </li>
+                                <script type="text/x-handlebars-template" id="insertAllArts">
+                                {{#each article}}
+                                    <li class="am-g am-list-item-desced">
+                                        <div>
+                                        <a href="/static/{{type}}.html?id={{id}}" class="am-list-item-hd " style="float: left;">{{title}}</a>
+                                        <div style="float: right;">
+                                            <span>{{time}}&nbsp;</span>
+                                            <span class="am-badge am-badge-success am-radius">{{type}}</span>
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                        </div>
+                                        <div class="am-list-item-text">{{summary}}</div>
+                                    </li>
+                                {{/each}}
+                                </script>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="am-u-md-4 blog-sidebar">
+            <div class="am-panel-group">
+                <section class="am-panel am-panel-warning">
+                    <div class="am-panel-hd">ATTENTION!</div>
+                    <div class="am-panel-bd">
+                        <p>这是作者的所有文章，欢迎各位提出宝贵的意见及建议，我将虚心接受并及时改正...</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="blog-footer">
+        <p>island 的个人网站
+            <br/>
+            <small>
+                &copy; 2016. Power by Python. 托管于
+                <a href="http://www.qcloud.com/" target="_blank">腾讯云</a>
+                <span>&</span>
+                <a href="http://www.qiniu.com/" target="_blank">七牛云存储</a>
+            </small>
+        </p>
+    </footer>
+    <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/amazeui/2.5.2/js/amazeui.min.js"></script>
+    <script src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="assets/js/userdefined.js"></script>
+    <script type="text/javascript">
+    newestArts();
+    greeting();
+    allarts();
+    </script>
+</body>
+
+</html>
