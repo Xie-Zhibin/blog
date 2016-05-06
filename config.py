@@ -14,11 +14,11 @@ class Config:
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:xxxxxx@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:xiezhibin@localhost/blog'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:xxxxxx@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:xiezhibin@localhost/blog'
 
 
 config = {
