@@ -18,7 +18,7 @@ class DevConfig(Config):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:xiezhibin@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:xxxxxx@localhost/blog'
 
 
 config = {
