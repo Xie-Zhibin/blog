@@ -46,29 +46,31 @@ function newestArts() {
 }
 
 
-//iframe
-function getArt(path) {
-    //get article for iframe
+
+//get article by api
+function getArt(type) {
+    //get the two new articles for allarts
+    var xmlhttp;
     var arg = location.search;
-    var id = arg.split("=")[1] + ".html";
-    document.getElementById("external-frame").src = path + id;
+    var id = "/" + arg.split("=")[1];
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var data = xmlhttp.responseText;
+            if (data != "nothing") {
+                var demo = document.getElementById("section");
+                demo.innerHTML=data;
+            }
+        }
+    }
+    xmlhttp.open("GET", "/api/art/"+type+id, true);
+    xmlhttp.send();
 }
 
-function setIframeHeight() {
-    //auto adjust the height of iframe
-    var iframe = document.getElementById('external-frame');
-    if (iframe) {
-        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-        if (iframeWin.document.body) {
-            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-        }
-        document.getElementById("loading").style.display="none";
-    }
-};
-
-window.onload = function () {
-setIframeHeight();
-};
 
 function unfload() {
     //to unfload div of iframe
@@ -208,5 +210,25 @@ function allarts() {
         }
     }
     xmlhttp.open("GET", "/api/allarts", true);
+    xmlhttp.send();
+}
+
+
+function art() {
+    //get the two new articles for allarts
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var data = xmlhttp.responseText;
+            var demo = document.getElementById("section");
+            demo.innerHTML=data;
+        }
+    }
+    xmlhttp.open("GET", "/api/art/2", true);
     xmlhttp.send();
 }

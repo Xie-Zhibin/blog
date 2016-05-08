@@ -125,7 +125,6 @@
                             <img src="http://7xtgpc.com2.z0.glb.clouddn.com/loading.gif" />
                         </div>
                     </div>
-                    <iframe src="" id="external-frame" onload=""></iframe>
                 </section>
                 <div style="float: right;">
                     <button onclick="unfload()" type="button" class="am-btn am-btn-success am-round am-btn-xs" id="unfload">展开</button>
@@ -134,7 +133,7 @@
             </div>
             <div style="width: 80%;margin: 0 auto;">
                 <!-- 多说评论框 start -->
-                <div class="ds-thread" data-thread-key="coding" data-title="" data-url=""></div>
+                <div class="ds-thread" data-thread-key="" data-title="" data-url=""></div>
                 <!-- 多说评论框 end -->
                 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
                 <script type="text/javascript">
@@ -142,7 +141,8 @@
                 var commtesBox = document.getElementsByClassName("ds-thread")[0];
                 var arg = location.search;
                 var id = arg.split("=")[1];
-                commtesBox.setAttribute("data-title",id)
+                commtesBox.setAttribute("data-title",id);
+                commtesBox.setAttribute("data-thread-key","coding"+id);
                 //
                 var duoshuoQuery = {
                     short_name: "zhibinnet"
@@ -201,7 +201,7 @@
     <script type="text/javascript">
     newestArts();
     artList("type=coding");
-    getArt("articles/coding/");
+    getArt("coding");
     num("type=coding");
     greeting();
     </script>

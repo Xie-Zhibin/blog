@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>post article</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate icon" type="image/png" href="http://7xtgpc.com2.z0.glb.clouddn.com/favicon.png">
+    <link rel="stylesheet" href="http://7xtgpc.com2.z0.glb.clouddn.com/amazeui.min.css" />
+    <style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1500px;
+        }
+    }
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+
+    .blog-main {
+        padding: 20px 0;
+    }
+
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+
+    .blog-meta a {
+        color: #27ae60;
+    }
+
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+
+    .blog-team li {
+        padding: 4px;
+    }
+
+    .blog-team img {
+        margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .authorinfo li {
+        width: 12%;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="am-topbar">
+        <h1 class="am-topbar-brand" style="line-height: 0;padding:0;"><a href="/"><img src="http://7xtgpc.com2.z0.glb.clouddn.com/logo.png"></a></h1>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+            <ul class="am-nav am-nav-pills am-topbar-nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="/static/coding.html?id=1" id="coding">编程</a></li>
+                <li><a href="/static/others.html?id=2" id="others">杂谈</a></li>
+                <li><a href="/static/messages.html">留言板</a></li>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          MORE <span class="am-icon-caret-down"></span>
+        </a>
+                    <ul class="am-dropdown-content">
+                        <li class="am-dropdown-header">MORE</li>
+                        <li><a href="/static/allarts.html">所有文章</a></li>
+                        <li><a href="/static/author.html">关于作者</a></li>
+                        <li><a href="/static/website.html">关于网站</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" style="margin-left: 0;margin-right: 2px;padding-left: 0;padding-right: 0;">
+                <span id="welcome">welcome!</span>
+            </ul>
+        </div>
+    </header>
+    <div class="am-g am-g-fixed blog-g-fixed">
+                <section class="am-panel am-panel-default">
+                    <form class="am-form" action="/postarticle" method="post">
+                      <fieldset>
+                        <legend>post article</legend>
+
+                        <div class="am-form-group">
+                          <label for="doc-ipt-email-1">title</label>
+                          <input type="text" name="title" id="doc-ipt-email-1" placeholder="title">
+                        </div>
+
+                        <div class="am-radio">
+                          <label>
+                            <input type="radio" name="artType" value="coding" checked>
+                            coding
+                          </label>
+                        </div>
+
+                        <div class="am-radio">
+                          <label>
+                            <input type="radio" name="artType" value="others">
+                            others
+                          </label>
+                        </div>
+
+                        <div class="am-form-group">
+                          <label for="doc-ipt-email-1">cover key</label>
+                          <input type="text" name="key" id="doc-ipt-email-1" placeholder="cover key">
+                        </div>
+
+                        <div class="am-form-group">
+                          <label for="doc-ta-1">main summary</label>
+                          <textarea class="" rows="5" id="doc-ta-1" name="summary1"></textarea>
+                        </div>
+
+                        <div class="am-form-group">
+                          <label for="doc-ta-1">secondry summary</label>
+                          <textarea class="" rows="5" id="doc-ta-1" name="summary2"></textarea>
+                        </div>
+
+                        <div class="am-form-group">
+                          <label for="doc-ta-1">content</label>
+                          <textarea style="height: 250px;" rows="5" id="doc-ta-1" name="content"></textarea>
+                        </div>
+
+                        <div class="am-form-group">
+                          <label for="doc-ipt-pwd-1">password</label>
+                          <input type="password" name="pwd" id="doc-ipt-pwd-1" placeholder="password">
+                        </div>
+
+                        <p><button type="submit" class="am-btn am-btn-default">提交</button></p>
+                      </fieldset>
+                    </form>
+
+                </section>
+    </div>
+    <footer class="blog-footer">
+        <p>island 的个人网站
+            <br/>
+            <small>
+                &copy; 2016. Power by Python. 托管于
+                <a href="http://www.qcloud.com/" target="_blank">腾讯云</a>
+                <span>&</span>
+                <a href="http://www.qiniu.com/" target="_blank">七牛云存储</a>
+            </small>
+        </p>
+    </footer>
+    <script src="assets/js/userdefined.js"></script>
+    <script type="text/javascript">
+    greeting();
+    </script>
+</body>
+
+</html>
