@@ -39,7 +39,7 @@ def postarticle():
         else:
             return "deny"
     else:
-        return "data"
+        return "nodata"
 
 
 @main.route("/api/index")
@@ -57,7 +57,7 @@ def apiIndex():
         key = i.picKey
         raw_data["data"].append({"title": title, "time": time, "id": id_,
                                  "summary1": summary1, "summary2": summary2, "type": _type, "key": key})
-        json_data = json.dumps(raw_data)
+    json_data = json.dumps(raw_data)
     return json_data
 
 
@@ -133,12 +133,12 @@ def apiTime():
 
 @main.route("/api/art/<type>/<int:id>")
 def apiArt(type, id):
-    "get markdown from database"
+    """get markdown from database to transform from md to html"""
     art = Articles.query.filter_by(id=id,artType=type).first()
     if (art):
         md = art.content
         response = markdown.markdown(md)
     else:
         response = "nothing"
-    
+
     return response
