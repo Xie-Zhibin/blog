@@ -93,3 +93,4 @@ ENV/
 *.ini
 *.out
 *.sock
+config.py
