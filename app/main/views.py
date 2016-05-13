@@ -116,7 +116,7 @@ def apiArt(type, id):
 
 
 @main.route("/post", methods=['POST'])
-def postarticle():
+def post():
     """to post article for admin"""
     data = request.form
     if (data):
@@ -145,7 +145,7 @@ def postarticle():
 
 
 @main.route("/modify", methods=['POST'])
-def postarticle():
+def modify():
     """modify article by admin"""
     data = request.form
     if (data):
