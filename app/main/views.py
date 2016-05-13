@@ -13,35 +13,6 @@ def index():
     return redirect("/static/index.html")
 
 
-@main.route("/postarticle", methods=['POST'])
-def postarticle():
-    """to post article for admin"""
-    data = request.form
-    if (data):
-        pwd = data.get("pwd")
-        check = Admin.query.filter_by(pwd=pwd).first()
-        if (check):
-            title = data.get("title")
-            summary1 = data.get("summary1")
-            summary2 = data.get("summary2")
-            content = data.get("content")
-            artType = data.get("artType")
-            picKey = data.get("key")
-            if (title and summary1 and summary2 and content and artType and picKey):
-                newArt = Articles(title=title, summary1=summary1,
-                                  summary2=summary2,content=content,
-                                  artType=artType, picKey=picKey)
-                db.session.add(newArt)
-                db.session.commit()
-                return "done"
-            else:
-                return "invalid"
-        else:
-            return "deny"
-    else:
-        return "nodata"
-
-
 @main.route("/api/index")
 def apiIndex():
     """return two new articles"""
@@ -134,11 +105,79 @@ def apiTime():
 @main.route("/api/art/<type>/<int:id>")
 def apiArt(type, id):
     """get markdown from database to transform from md to html"""
-    art = Articles.query.filter_by(id=id,artType=type).first()
+    art = Articles.query.filter_by(id=id, artType=type).first()
     if (art):
         md = art.content
-        response = markdown.markdown(md)
+        response = md  # markdown.markdown(md)
     else:
         response = "nothing"
 
     return response
+
+
+@main.route("/post", methods=['POST'])
+def postarticle():
+    """to post article for admin"""
+    data = request.form
+    if (data):
+        pwd = data.get("pwd")
+        check = Admin.query.filter_by(pwd=pwd).first()
+        if (check):
+            title = data.get("title")
+            summary1 = data.get("summary1")
+            summary2 = data.get("summary2")
+            content = data.get("content")
+            artType = data.get("artType")
+            picKey = data.get("key")
+            if (title and summary1 and summary2 and content and artType and picKey):
+                newArt = Articles(title=title, summary1=summary1,
+                                  summary2=summary2, content=content,
+                                  artType=artType, picKey=picKey)
+                db.session.add(newArt)
+                db.session.commit()
+                return "done"
+            else:
+                return "invalid"
+        else:
+            return "deny"
+    else:
+        return "nodata"
+
+
+@main.route("/modify", methods=['POST'])
+def postarticle():
+    """modify article by admin"""
+    data = request.form
+    if (data):
+        pwd = data.get("pwd")
+        check = Admin.query.filter_by(pwd=pwd).first()
+        if (check):
+            try:
+                id_ = int(data.get("id"))
+                title = data.get("title")
+                summary1 = data.get("summary1")
+                summary2 = data.get("summary2")
+                content = data.get("content")
+                artType = data.get("artType")
+                picKey = data.get("key")
+                if (id_ and title and summary1 and summary2 and content and artType and picKey):
+                    art = Articles.query.filter_by(id=id_).first()
+                    if (art):
+                        art.title = title
+                        art.summary1 = summary1
+                        art.summary2 = summary2
+                        art.content = content
+                        art.artType = artType
+                        art.picKey = picKey
+                        db.session.commit()
+                        return "done"
+                    else:
+                        return "inexsit"
+                else:
+                    return "invalid"
+            except:
+                return "something wrong"
+        else:
+            return "deny"
+    else:
+        return "nodata"

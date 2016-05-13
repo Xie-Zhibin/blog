@@ -3,7 +3,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
-    <title>post article</title>
+    <title>modify article</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
@@ -100,9 +100,14 @@
     </header>
     <div class="am-g am-g-fixed blog-g-fixed">
                 <section class="am-panel am-panel-default">
-                    <form class="am-form" action="/post" method="post">
+                    <form class="am-form" action="/modify" method="post">
                       <fieldset>
-                        <legend>post article</legend>
+                        <legend>modify article</legend>
+
+                        <div class="am-form-group">
+                          <label for="doc-ipt-email-1">id</label>
+                          <input type="text" name="id" id="doc-ipt-email-1" placeholder="id of article">
+                        </div>
 
                         <div class="am-form-group">
                           <label for="doc-ipt-email-1">title</label>
