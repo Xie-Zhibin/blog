@@ -13,7 +13,9 @@ function cover() {
             var json_data = JSON.parse(data);
             var source = $("#new_articles").html();
             var templat = Handlebars.compile(source);
-            var context = { "article": json_data.data };
+            var context = {
+                "article": json_data.data
+            };
             var html = templat(context)
             $("#render_1").html(html)
         }
@@ -53,23 +55,45 @@ function getArt(type) {
     var xmlhttp;
     var arg = location.search;
     var id = "/" + arg.split("=")[1];
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var data = xmlhttp.responseText;
-            if (data != "nothing") {
-                var demo = document.getElementById("section");
-                demo.innerHTML=data;
-            }
+    var src = "/api/art/" + type + id
+    exteIframe = document.getElementById("externalFrame")
+    exteIframe.src = src
+    // if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+    //     xmlhttp = new XMLHttpRequest();
+    // } else { // code for IE6, IE5
+    //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    // }
+    // xmlhttp.onreadystatechange = function() {
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //         var data = xmlhttp.responseText;
+    //         if (data != "nothing") {
+    //             var demo = document.getElementById("section");
+    //             demo.innerHTML = data;
+    //         }
+    //     }
+    // }
+    // xmlhttp.open("GET", "/api/art/" + type + id, true);
+    // xmlhttp.send();
+}
+
+
+// document.domain = "caibaojian.com";
+function setIframeHeight() {
+    iframe = document.getElementById('externalFrame');
+    if (iframe) {
+        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+        if (iframeWin.document.body) {
+            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+            loading = document.getElementById("loading")
+            loading.style.display="none"
         }
     }
-    xmlhttp.open("GET", "/api/art/"+type+id, true);
-    xmlhttp.send();
 }
+
+window.onload = function() {
+    setIframeHeight();
+};
+
 
 
 function unfload() {
@@ -104,7 +128,9 @@ function artList(args) {
             var json_data = JSON.parse(data);
             var source = $("#new_arts").html();
             var templat = Handlebars.compile(source);
-            var context = { "arts": json_data.data };
+            var context = {
+                "arts": json_data.data
+            };
             var html = templat(context)
             $("#render_2").html(html)
         }
@@ -115,7 +141,7 @@ function artList(args) {
 
 
 //number of article
-function num(type){
+function num(type) {
     //get number of article
     var xmlhttp;
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -131,13 +157,13 @@ function num(type){
             var coding = document.getElementById("coding_num");
             var others = document.getElementById("others_num");
             var all = document.getElementById("all_num");
-            if (coding){
+            if (coding) {
                 coding.innerHTML = "(共" + num.coding + "篇)";
             }
-            if (others){
+            if (others) {
                 others.innerHTML = "(共" + num.others + "篇)";
             }
-            if (all){
+            if (all) {
                 all.innerHTML = "(共" + num.all + "篇)";
             }
         }
@@ -204,7 +230,9 @@ function allarts() {
             var json_data = JSON.parse(data);
             var source = $("#insertAllArts").html();
             var templat = Handlebars.compile(source);
-            var context = { "article": json_data.data };
+            var context = {
+                "article": json_data.data
+            };
             var html = templat(context)
             $("#allArticles").html(html)
         }
@@ -226,7 +254,7 @@ function art() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var data = xmlhttp.responseText;
             var demo = document.getElementById("section");
-            demo.innerHTML=data;
+            demo.innerHTML = data;
         }
     }
     xmlhttp.open("GET", "/api/art/2", true);
