@@ -2,52 +2,44 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>逐字显示文字</title>
+<title>文字</title>
 <style type="text/css">
     body {
         background-color:#FFE;
         color: #3f7f5f;
-    }
-    #content {
-        float: left;
     }
 </style>
 </head>
 <body>
 <br>
 <audio autoplay="autoplay" loop="loop">
-  <source src="http://7xrn74.com1.z0.glb.clouddn.com/mariage_d'amour.mp3" type="audio/mpeg">
-<embed height="100" width="100" src="http://7xrn74.com1.z0.glb.clouddn.com/mariage_d'amour.mp3" />
-</audio>
+  <source src="http://7xrn74.com1.z0.glb.clouddn.com/kiss_the_rain.mp3" type="audio/mpeg">
+<!-- <embed height="100" width="100" src="http://7xrn74.com1.z0.glb.clouddn.com/kiss_the_rain.mp3" />
+ --></audio>
 <div>
-    <p id="paragraph1"></p>
-    <p id="paragraph2"></p>
+    <p id="text" style="font-size: x-large;"></p>
 </div>
 </body>
-<script language="javascript">
-    text1 = " 喜欢，打开电脑，在橘黄色的柔和灯光下，看蓝屏上一块块黑色的方块字。心，缓缓落在一篇篇文章上，柔美，平和，仿若远离尘世。一山一水一意境，无可言状的清幽，在文字中徐徐舒展。空灵，梦幻，脱俗的美，让心飘出尘世的繁杂和琐碎，明净如镜，照出安宁，照出淡雅。心静，便是浅浅的暖。一字一句一感悟，煽动翅膀的启迪，放飞在字里行间。轻轻读取，都是人生体悟的絮语。平淡，深刻，可以从繁华读到平静，从枯燥读到画意，从冰冷读到温热。文字的空间，带着温度的正能量，默默蔓延。"
-    text2 = " 一情一爱一恋曲，醉染流年的文字，镌刻出红尘的深情。依着天荒地老的传说，牵着恒古不变的誓言，抚顺纵横的牵绊，在爱的篇章中，把一个“情”字读到心的深层，化成暖融融的恋曲，任爱在时光中漫卷。一思一念一情怀，走进文字清欢自己，红尘陌上的所有烟尘铅华，在墨香中悄然消褪，仿佛世界也变得清绝明净。抬眼，风过是诗，雨落是歌，一切皆美好。走进文字可以每一步都跟随花开的节奏，每一程都闻及鸟语花香；可以不管惊涛骇浪，不顾沧海桑田，忘我栖息在诗情画意中；可以寻一处净土，修篱种菊；可以守一份安然，琴瑟共鸣可以把一盏香茗，放逐思绪；可以时光不老，春心不逝；可以没有世俗的薄凉，只有时光的温暖。走进文字，只为一份暖暖的感觉。";
+<script>
+    article = "喜欢，打开电脑，在橘黄色的柔和灯光下，看蓝屏上一块块黑色的方块字。心，缓缓落在一篇篇文章上，柔美，平和，仿若远离尘世。一山一水一意境，无可言状的清幽，在文字中徐徐舒展。空灵，梦幻，脱俗的美，让心飘出尘世的繁杂和琐碎，明净如镜，照出安宁，照出淡雅。心静，便是浅浅的暖。一字一句一感悟，煽动翅膀的启迪，放飞在字里行间。轻轻读取，都是人生体悟的絮语。平淡，深刻，可以从繁华读到平静，从枯燥读到画意，从冰冷读到温热。文字的空间，带着温度的正能量，默默蔓延。<br /> 一情一爱一恋曲，醉染流年的文字，镌刻出红尘的深情。依着天荒地老的传说，牵着恒古不变的誓言，抚顺纵横的牵绊，在爱的篇章中，把一个“情”字读到心的深层，化成暖融融的恋曲，任爱在时光中漫卷。一思一念一情怀，走进文字清欢自己，红尘陌上的所有烟尘铅华，在墨香中悄然消褪，仿佛世界也变得清绝明净。抬眼，风过是诗，雨落是歌，一切皆美好。走进文字可以每一步都跟随花开的节奏，每一程都闻及鸟语花香；可以不管惊涛骇浪，不顾沧海桑田，忘我栖息在诗情画意中；可以寻一处净土，修篱种菊；可以守一份安然，琴瑟共鸣可以把一盏香茗，放逐思绪；可以时光不老，春心不逝；可以没有世俗的薄凉，只有时光的温暖。走进文字，只为一份暖暖的感觉。";
     i = 0;
     function first(){
-        subString = text1.substr(0,i);
-        paragraph1.innerHTML = subString + "_";
+        subString = article.substr(0,i);
+        text.innerHTML = subString + "_";
         i++;
-        if (i<text1.length){
-            setTimeout("first()",100);
-        }
-        else{
-            second();
+        if (i<article.length){
+            setTimeout("first()", 100);
         }
     }
-    j = 0;
-    function second(){
-        subString = text2.substr(0,j);
-        paragraph2.innerHTML = subString + "_";
-        j++;
-        if (j<text2.length){
-            setTimeout("second()",100);
-        }
-    }
+    // j = 0;
+    // function second(){
+    //     subString = text2.substr(0,j);
+    //     paragraph2.innerHTML = subString + "_";
+    //     j++;
+    //     if (j<text2.length){
+    //         setTimeout("second()", 10);
+    //     }
+    // }
     first()
     // var today=new Date();
     // var Year = today.getYear();
