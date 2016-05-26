@@ -57,23 +57,7 @@ function getArt(type) {
     var id = "/" + arg.split("=")[1];
     var src = "/api/art/" + type + id
     exteIframe = document.getElementById("externalFrame")
-    exteIframe.src = src
-    // if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-    //     xmlhttp = new XMLHttpRequest();
-    // } else { // code for IE6, IE5
-    //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    // }
-    // xmlhttp.onreadystatechange = function() {
-    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    //         var data = xmlhttp.responseText;
-    //         if (data != "nothing") {
-    //             var demo = document.getElementById("section");
-    //             demo.innerHTML = data;
-    //         }
-    //     }
-    // }
-    // xmlhttp.open("GET", "/api/art/" + type + id, true);
-    // xmlhttp.send();
+    exteIframe.src = src;
 }
 
 
@@ -126,6 +110,10 @@ function artList(args) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var data = xmlhttp.responseText;
             var json_data = JSON.parse(data);
+            var count = json_data.sum;
+            var sum = document.getElementById("count");
+            sum.innerHTML = "(共" + count + "篇)";
+
             var source = $("#new_arts").html();
             var templat = Handlebars.compile(source);
             var context = {
@@ -136,39 +124,6 @@ function artList(args) {
         }
     }
     xmlhttp.open("GET", "/api/getarts?" + args, true);
-    xmlhttp.send();
-}
-
-
-//number of article
-function num(type) {
-    //get number of article
-    var xmlhttp;
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var data = xmlhttp.responseText;
-            var json_data = JSON.parse(data);
-            var num = json_data.data;
-            var coding = document.getElementById("coding_num");
-            var others = document.getElementById("others_num");
-            var all = document.getElementById("all_num");
-            if (coding) {
-                coding.innerHTML = "(共" + num.coding + "篇)";
-            }
-            if (others) {
-                others.innerHTML = "(共" + num.others + "篇)";
-            }
-            if (all) {
-                all.innerHTML = "(共" + num.all + "篇)";
-            }
-        }
-    }
-    xmlhttp.open("GET", "/api/sum?" + type, true);
     xmlhttp.send();
 }
 
@@ -217,7 +172,7 @@ function greeting() {
 
 //all articles
 function allarts() {
-    //get the two new articles for allarts
+    //get the all articles for allarts
     var xmlhttp;
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -242,8 +197,8 @@ function allarts() {
 }
 
 
-function art() {
-    //get the two new articles for allarts
+//getthoughts
+function getThoughts() {
     var xmlhttp;
     if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
@@ -253,10 +208,11 @@ function art() {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var data = xmlhttp.responseText;
-            var demo = document.getElementById("section");
-            demo.innerHTML = data;
+            var json_data = JSON.parse(data);
+            var thghts = document.getElementById("thoughts");
+            thghts.innerHTML = json_data.data;
         }
     }
-    xmlhttp.open("GET", "/api/art/2", true);
+    xmlhttp.open("GET", "/api/getthoughts", true);
     xmlhttp.send();
 }

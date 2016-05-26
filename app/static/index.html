@@ -98,6 +98,12 @@
             </ul>
         </div>
     </header>
+    <div style="margin-top:-25px;height:30px;">
+        <div style="margin:0 70px;">
+            <span style="color:#5eb95e;margin-right:5px;" class="am-icon-volume-up"></span>
+            <span style="color:#666" id="thoughts">welcome to my blog!</span>
+        </div>
+    </div>
     <div class="am-g am-g-fixed blog-g-fixed">
         <div class="am-u-md-8">
             <!-- 渲染区1 -->
@@ -185,7 +191,7 @@
                     </div>
                 </section>
                 <section class="am-panel am-panel-default">
-                    <div class="am-panel-hd">最新文章<span id="all_num"></span></div>
+                    <div class="am-panel-hd">最新文章<span id="count"></span></div>
                     <!-- 渲染区2 -->
                     <ul class="am-list blog-list" id="render_2">
                         <li style="text-align: center;">
@@ -271,8 +277,8 @@
     newestArts();
     cover();
     artList("count=5");
-    num("");
     greeting();
+    getThoughts();
     </script>
 </body>
 
