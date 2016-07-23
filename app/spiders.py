@@ -50,6 +50,7 @@ def filters(code, pid):
     soup = BeautifulSoup(resp.text, 'lxml')
     table = soup.find('table', id='dlt')
     inner_tbs = table.find_all('table')
+
     if len(inner_tbs) > 1:
         info = inner_tbs[-1]
     else:
@@ -60,7 +61,18 @@ def filters(code, pid):
         }
 
     temp = []
-    for i in info.find_all('td'):
+    all_tds = info.find_all('td')
+
+    if all_tds:
+        pass
+    else:
+        return {
+            'data': {},
+            'message': u'暂未查到你的录取信息',
+            'status': 0
+        }
+
+    for i in all_tds:
         temp.append(i.get_text(strip=True).split(u'：')[-1])
 
     result = {
