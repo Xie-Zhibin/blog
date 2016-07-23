@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width ,initial-scale=1 ,maximum-scale=1,user-scalable=0">
+    <meta charset="UTF-8">
+    <title>高考录取查询助手</title>
+    <link rel="stylesheet" type="text/css" href="/static/admission/index.css"></head>
+
+<body>
+    <div class="contain">
+        <!-- 登记信息 -->
+        <div class="query">
+            <div class="query-top-kong"></div>
+            <div class="query-top">
+                <p class="query-top-up">高考录取查询</p>
+            </div>
+            <div class="query-sup-kong"></div>
+            <div class="query-sup ">
+                <div class="query-sup-1">
+                    <div class="weui-inDiv">
+                        <label class="weui_label">考生号:</label>
+                        <input class="weui_input zkzh" type="text" name="zkzh" placeholder="请除去前四位考生号" minlength="15" maxlength="15"></div>
+                    <p class="zkzhErr">考生号错误</p>
+                </div>
+                <div class="query-sup-2">
+                    <div class="weui-inDiv">
+                        <label class="weui_label">后四位:</label>
+                        <input class="weui_input name-in" type="text" name="name" placeholder="请输入身份证后四位"></div>
+                    <p class="nameErr">信息错误</p>
+                </div>
+            </div>
+            <div class="errMsg">
+                <span class="errMsg-span">暂无录取信息</span>
+            </div>
+            <div class="subm subm1">
+                <span>查询</span>
+            </div>
+            <div class="tixing"><p>数据来源:江西教育考试院</p></div>
+        </div>
+        <!-- 详细信息 -->
+        <div class="aftermsg">
+            <div class="afmsg-kong"></div>
+            <div class="afmsg-top"></div>
+            <div class="afmsg-contain" id="afmsg">
+                <p>
+                    <span class="sup">姓名</span>
+                    <span class="xm">{{name}}</span>
+                </p>
+                <p>
+                    <span class="sup">考生号</span>
+                    <span class="xx">{{ksh}}</span>
+                </p>
+                <p>
+                    <span class="sup">准考证号</span>
+                    <span class="xx">{{zkzh}}</span>
+                </p>
+                <p class="line"></p>
+                <p>
+                    <span class="sup">录取状态</span>
+                    <span class="kslb">{{lqzt}}</span>
+                </p>
+                <p>
+                    <span class="sup">计划性质</span>
+                    <span class="afzkzh">{{jhxzmc}}</span>
+                </p>
+                <p>
+                    <span class="sup">录取院校</span>
+                    <span class="xx">{{lqyx}}</span>
+                </p>
+                <p>
+                    <span class="sup">院校代号</span>
+                    <span class="yd">{{jxdh}}</span>
+                </p>
+                <p>
+                    <span class="sup">录取专业</span>
+                    <span class="kssj">{{lqzy}}</span>
+                </p>
+                <p>
+                    <span class="sup">录取批次</span>
+                    <span class="zf">{{lqpc}}</span>
+                </p>
+                <p>
+                    <span class="sup">录取科类</span>
+                    <span class="tl">{{lqkl}}</span>
+                </p>
+                <p>
+                    <span class="sup">录取时间</span>
+                    <span class="xzfy">{{lqsj}}</span>
+                </p>
+            </div>
+            <div class="subm subm2">
+                <span>返 回</span>
+            </div>
+             <div class="tixing tix"><p>数据来源:江西教育考试院</p></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <span>&copy island</span>
+    </footer>
+
+    <script type="text/javascript">
+    document.body.style.height = document.body.offsetHeight +'px';
+    document.getElementsByTagName('html')[0].style.height = document.getElementsByTagName('html')[0].offsetHeight + 'px';
+    // document.getElementsByClassName('contain')[0].style.height = document.body.offsetHeight  + 'px';
+    </script>
+    <script src="http://cdn.bootcss.com/vue/1.0.26/vue.min.js"></script>
+    <script type="text/javascript" src="/static/admission/index.js"></script>
+</body>
+</html>
