@@ -14,7 +14,8 @@ class Config:
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:xxxxxx@localhost/blog'
+    # 'mysql://root:xxxxxx@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.db')
 
 
 class ProductionConfig(Config):
