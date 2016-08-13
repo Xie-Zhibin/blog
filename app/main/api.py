@@ -18,8 +18,8 @@ def apiIndex():
         id_ = i.id
         summary1 = i.summary1
         summary2 = i.summary2
-        _type = i.artType
-        key = i.picKey
+        _type = i.art_type
+        key = i.pic_key
         raw_data["data"].append({"title": title, "time": time, "id": id_,
                                  "summary1": summary1, "summary2": summary2, "type": _type, "key": key})
     json_data = json.dumps(raw_data)
@@ -39,17 +39,17 @@ def apiGetArts():
     else:
         if (type_):
             arts = Articles.query.order_by(Articles.time.desc()).filter_by(
-                artType=type_).all()
-            sum_ = Articles.query.filter_by(artType=type_).count()
+                art_type=type_).all()
+            sum_ = Articles.query.filter_by(art_type=type_).count()
         else:
             arts = Articles.query.order_by(Articles.time.desc()).all()
     for i in arts:
         title = i.title
         time = i.time.strftime('%Y/%m/%d')
         id_ = i.id
-        artType = i.artType
+        art_type = i.art_type
         raw_data["data"].append(
-            {"title": title, "time": time, "id": id_, "type": artType})
+            {"title": title, "time": time, "id": id_, "type": art_type})
 
     raw_data["sum"] = sum_
     json_data = json.dumps(raw_data)
@@ -63,7 +63,7 @@ def allArts():
     for i in arts:
         time = i.time.strftime('%Y/%m/%d')
         raw_data["data"].append({"id": i.id, "title": i.title,
-                                 "summary": i.summary1, "type": i.artType, "time": time})
+                                 "summary": i.summary1, "type": i.art_type, "time": time})
     json_data = json.dumps(raw_data)
     return json_data
 
@@ -72,10 +72,10 @@ def allArts():
 def apiNewestArts():
     """return the id of newest articel of coding and others"""
     others = Articles.query.order_by(Articles.time.desc()).filter_by(
-        artType="others").first()
+        art_type="others").first()
 
     coding = Articles.query.order_by(Articles.time.desc()).filter_by(
-        artType="coding").first()
+        art_type="coding").first()
     data = {"data": {"coding": coding.id, "others": others.id}, "status": 1}
     json_data = json.dumps(data)
     return json_data
@@ -93,7 +93,7 @@ def apiTime():
 @main.route("/api/art/<type>/<int:id>")
 def apiArt(type, id):
     """get markdown from database to transform from md to html"""
-    art = Articles.query.filter_by(id=id, artType=type).first()
+    art = Articles.query.filter_by(id=id, art_type=type).first()
     if (art):
         md = art.content
         response = md  # markdown.markdown(md)
