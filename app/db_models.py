@@ -17,8 +17,8 @@ class Articles(db.Model):
     summary1 = db.Column(db.Text)
     summary2 = db.Column(db.Text)
     content = db.Column(db.Text)
-    artType = db.Column(db.String(16))  # type of article
-    picKey = db.Column(db.String(128), server_default="cover")  # key of cover picture on qiniu
+    art_type = db.Column(db.String(16))  # type of article
+    pic_key = db.Column(db.String(128), server_default="cover")  # key of cover picture on qiniu
     time = db.Column(db.TIMESTAMP, server_default=func.now())
 
 

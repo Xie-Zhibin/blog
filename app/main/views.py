@@ -25,13 +25,13 @@ def post():
             summary1 = data.get("summary1")
             summary2 = data.get("summary2")
             content = data.get("content")
-            artType = data.get("artType")
-            picKey = data.get("key")
-            if (title and summary1 and summary2 and content and artType and picKey):
-                newArt = Articles(title=title, summary1=summary1,
-                                  summary2=summary2, content=content,
-                                  artType=artType, picKey=picKey)
-                db.session.add(newArt)
+            art_type = data.get("art_type")
+            pic_key = data.get("key")
+            if (title and summary1 and summary2 and content and art_type and pic_key):
+                new_art = Articles(title=title, summary1=summary1,
+                                   summary2=summary2, content=content,
+                                   art_type=art_type, pic_key=pic_key)
+                db.session.add(new_art)
                 db.session.commit()
                 return "done"
             else:
@@ -46,27 +46,27 @@ def post():
 def modify():
     """modify article by admin"""
     data = request.form
-    if (data):
+    if data:
         pwd = data.get("pwd")
         check = Admin.query.filter_by(pwd=pwd).first()
-        if (check):
+        if check:
             try:
                 id_ = int(data.get("id"))
                 title = data.get("title")
                 summary1 = data.get("summary1")
                 summary2 = data.get("summary2")
                 content = data.get("content")
-                artType = data.get("artType")
-                picKey = data.get("key")
-                if (id_ and title and summary1 and summary2 and content and artType and picKey):
+                art_type = data.get("art_type")
+                pic_key = data.get("key")
+                if (id_ and title and summary1 and summary2 and content and art_type and pic_key):
                     art = Articles.query.filter_by(id=id_).first()
                     if (art):
                         art.title = title
                         art.summary1 = summary1
                         art.summary2 = summary2
                         art.content = content
-                        art.artType = artType
-                        art.picKey = picKey
+                        art.art_type = art_type
+                        art.pic_key = pic_key
                         db.session.commit()
                         return "done"
                     else:
@@ -86,10 +86,10 @@ def postThoughts():
     content = request.form.get("thoughts")
     pwd = request.form.get("pwd")
     check = Admin.query.filter_by(pwd=pwd).first()
-    if (check):
+    if check:
         if (content):
-            newThoughts = Thoughts(content=content)
-            db.session.add(newThoughts)
+            new_thoughts = Thoughts(content=content)
+            db.session.add(new_thoughts)
             db.session.commit()
             return "done"
         else:
