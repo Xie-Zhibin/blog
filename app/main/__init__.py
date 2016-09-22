@@ -1,6 +1,6 @@
-#coding:utf-8
+"""Main blueprint initial."""
 from flask import Blueprint
 
-main = Blueprint("main",__name__)
+main = Blueprint("main", __name__)
 
-from . import views, api, admission, errors
+from app.main import views, api, errors

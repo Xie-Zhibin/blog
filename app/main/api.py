@@ -1,17 +1,19 @@
-# coding:utf-8
-from flask import redirect, request, jsonify
+"""Apis."""
+from flask import request
 import time
 import json
-from .. import db
-from ..db_models import Admin, Articles, Thoughts
-from . import main
+from app.db_models import Articles, Thoughts
+from app.main import main
 
 
 @main.route("/api/index")
-def apiIndex():
-    """return two new articles"""
+def api_index():
+    """Return two new articles."""
     arts = Articles.query.order_by(Articles.time.desc()).limit(3).all()
-    raw_data = {"data": [], "status": 1}
+    raw_data = {
+        "data": [],
+        "status": 1
+    }
     for i in arts:
         title = i.title
         time = i.time.strftime('%Y/%m/%d')
@@ -21,14 +23,15 @@ def apiIndex():
         _type = i.art_type
         key = i.pic_key
         raw_data["data"].append({"title": title, "time": time, "id": id_,
-                                 "summary1": summary1, "summary2": summary2, "type": _type, "key": key})
+                                 "summary1": summary1, "summary2": summary2,
+                                 "type": _type, "key": key})
     json_data = json.dumps(raw_data)
     return json_data
 
 
 @main.route("/api/getarts")
-def apiGetArts():
-    """return id,title,time,type etc. of each article"""
+def api_get_arts():
+    """Return id,title,time,type etc. of each article."""
     type_ = request.args.get("type")
     count = request.args.get("count")
     raw_data = {"data": [], "status": 1}
@@ -57,42 +60,53 @@ def apiGetArts():
 
 
 @main.route("/api/allarts")
-def allArts():
+def all_arts():
+    """Get all arts."""
     arts = Articles.query.order_by(Articles.time.desc()).all()
     raw_data = {"data": [], "status": 1}
     for i in arts:
         time = i.time.strftime('%Y/%m/%d')
         raw_data["data"].append({"id": i.id, "title": i.title,
-                                 "summary": i.summary1, "type": i.art_type, "time": time})
+                                 "summary": i.summary1, "type": i.art_type,
+                                 "time": time})
     json_data = json.dumps(raw_data)
     return json_data
 
 
 @main.route("/api/newestarts")
-def apiNewestArts():
-    """return the id of newest articel of coding and others"""
+def api_newest_arts():
+    """Return the id of newest articel of coding and others."""
     others = Articles.query.order_by(Articles.time.desc()).filter_by(
         art_type="others").first()
 
     coding = Articles.query.order_by(Articles.time.desc()).filter_by(
         art_type="coding").first()
-    data = {"data": {"coding": coding.id, "others": others.id}, "status": 1}
+    data = {
+        "data": {
+            "coding": coding.id,
+            "others": others.id
+        },
+        "status": 1
+    }
     json_data = json.dumps(data)
     return json_data
 
 
 @main.route("/api/time")
-def apiTime():
-    """return the hours of this request"""
-    hours = int(time.strftime("%H"))
-    data = {"hours": hours, "status": 1}
+def api_time():
+    """Return the hours of this request."""
+    hours = int(time.strftime("%H")) + 8
+    data = {
+        "hours": hours,
+        "status": 1
+    }
     json_data = json.dumps(data)
     return json_data
 
 
 @main.route("/api/art/<type>/<int:id>")
-def apiArt(type, id):
-    """get markdown from database to transform from md to html"""
+def api_art(type, id):
+    """Get markdown from database to transform from md to html."""
     art = Articles.query.filter_by(id=id, art_type=type).first()
     if (art):
         md = art.content
@@ -104,9 +118,12 @@ def apiArt(type, id):
 
 
 @main.route("/api/getthoughts")
-def getThoughts():
-    """get thoughts from db"""
+def get_thoughts():
+    """Get thoughts from db."""
     thoughts = Thoughts.query.order_by(Thoughts.time.desc()).first()
-    data = {"data":thoughts.content, "status":1}
+    data = {
+        "data": thoughts.content,
+        "status": 1
+    }
     json_data = json.dumps(data)
     return json_data

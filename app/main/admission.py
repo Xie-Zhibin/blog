@@ -1,9 +1,7 @@
-# coding: utf-8
-
 u"""江西高招查询."""
 
 from flask import request, jsonify
-from . import main
+from app.main import main
 import re
 from app.spiders import filters
 

@@ -1,21 +1,20 @@
-# coding:utf-8
-from flask import redirect, request, jsonify
-import time
-import json
-from .. import db
-from ..db_models import Admin, Articles, Thoughts
-from . import main
-from app import *
+"""Views."""
+from flask import redirect, request
+from app import db
+from app.db_models import Admin, Articles, Thoughts
+from app.main import main
+# from app import *
 
 
 @main.route("/")
 def index():
+    """Index."""
     return redirect("/static/index.html")
 
 
 @main.route("/post", methods=['POST'])
 def post():
-    """to post article for admin"""
+    """To post article for admin."""
     data = request.form
     if (data):
         pwd = data.get("pwd")
@@ -27,7 +26,8 @@ def post():
             content = data.get("content")
             art_type = data.get("art_type")
             pic_key = data.get("key")
-            if (title and summary1 and summary2 and content and art_type and pic_key):
+            if (title and summary1 and summary2 and content and
+                    art_type and pic_key):
                 new_art = Articles(title=title, summary1=summary1,
                                    summary2=summary2, content=content,
                                    art_type=art_type, pic_key=pic_key)
@@ -44,7 +44,7 @@ def post():
 
 @main.route("/modify", methods=['POST'])
 def modify():
-    """modify article by admin"""
+    """Modify article by admin."""
     data = request.form
     if data:
         pwd = data.get("pwd")
@@ -58,7 +58,8 @@ def modify():
                 content = data.get("content")
                 art_type = data.get("art_type")
                 pic_key = data.get("key")
-                if (id_ and title and summary1 and summary2 and content and art_type and pic_key):
+                if (id_ and title and summary1 and summary2 and content and
+                        art_type and pic_key):
                     art = Articles.query.filter_by(id=id_).first()
                     if (art):
                         art.title = title
@@ -82,7 +83,8 @@ def modify():
 
 
 @main.route("/postthoughts", methods=["POST"])
-def postThoughts():
+def post_thoughts():
+    """Post my thoughts."""
     content = request.form.get("thoughts")
     pwd = request.form.get("pwd")
     check = Admin.query.filter_by(pwd=pwd).first()
@@ -96,12 +98,3 @@ def postThoughts():
             return "no content"
     else:
         return "deny"
-
-
-@main.route('/test', methods=['POST'])
-def test():
-    account = request.form.get('username')
-    pwd = request.form.get('pwd')
-    print "Account:", account
-    print "password:", pwd
-    return redirect('http://qzone.qq.com/')
