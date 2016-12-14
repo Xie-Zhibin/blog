@@ -3,6 +3,7 @@ from flask import redirect, request
 from app import db
 from app.db_models import Admin, Articles, Thoughts
 from app.main import main
+from werkzeug.security import check_password_hash
 # from app import *
 
 
@@ -16,7 +17,7 @@ def index():
 def post():
     """To post article for admin."""
     data = request.form
-    if (data):
+    if data:
         pwd = data.get("pwd")
         check = Admin.query.filter_by(pwd=pwd).first()
         if (check):
@@ -47,8 +48,9 @@ def modify():
     """Modify article by admin."""
     data = request.form
     if data:
-        pwd = data.get("pwd")
-        check = Admin.query.filter_by(pwd=pwd).first()
+        pwd = data.get("pwd") or ""
+        pwdhash = Admin.query.first().pwd
+        check = check_password_hash(pwdhash, pwd)
         if check:
             try:
                 id_ = int(data.get("id"))
@@ -86,8 +88,9 @@ def modify():
 def post_thoughts():
     """Post my thoughts."""
     content = request.form.get("thoughts")
-    pwd = request.form.get("pwd")
-    check = Admin.query.filter_by(pwd=pwd).first()
+    pwd = request.form.get("pwd") or ""
+    pwdhash = Admin.query.first().pwd
+    check = check_password_hash(pwdhash, pwd)
     if check:
         if (content):
             new_thoughts = Thoughts(content=content)

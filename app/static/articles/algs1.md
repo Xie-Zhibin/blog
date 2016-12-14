@@ -1,0 +1,419 @@
+# 算法(排序)
+虽然排序算法是一个简单的问题，但是从计算机科学发展以来，在此问题上已经有大量的研究。排序在在商业数据处理和现代科学计算中有重要地位。排序算法常常是解决问题的第一步，好的排序算法是很多问题解决的前提。学习排序算法有助于理解比较算法性能的方法，类似的技术也能有效解决其他类型的问题(问题的归约)。
+
+参考书籍：《算法(第4版)》
+扩展库：从《算法(第4版)》官网下载 http://algs4.cs.princeton.edu/code/
+
+排序算法类模板：
+```
+// @island
+// 2016-10-23 22:43:30
+import edu.princeton.cs.algs4.StdOut;
+
+public class Template {
+    protected static void sort(Comparable[] a) {
+    }
+
+    protected static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;  // 比较两个元素
+    }
+
+    protected static void exch(Comparable[] a, int i, int j) {
+        Comparable t = a[i];  // 交换两个元素的位置(引用)
+        a[i] = a[j];
+        a[j] = t;
+    }
+
+    protected static void show(Comparable[] a) {
+        for (Comparable i : a) {  // 打印数组a
+            StdOut.print(i + " ");
+        }
+        StdOut.println();
+    }
+
+    protected static boolean isSorted(Comparable[] a) {
+        for (int i = 1; i < a.length; i++) {  // 检查数组a是否已排序
+            if (less(a[i], a[i-1])) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+```
+
+## A.排序算法
+
+### 1.选择排序
+思路：首先，找到数组中最小的元素，将它和数组的第一个元素交换位置。之后在剩下的元素中找到最小的元素，将它与数组的第二个元素交换，如此往复。
+```
+// @island
+// 2016-10-24 00:06:42
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+
+public class Selection extends Template {
+    public static void sort(Comparable[] a) {
+        int N = a.length;
+        for (int i = 0; i < N; i++) {
+            int min = i;
+            for (int j = i+1; j < N; j++) {
+                if (less(a[j], a[min])){  // 找出最小的元素
+                    min = j;
+                }
+            }
+            exch(a, i, min);  // 将最小的元素与第i个元素交换位置
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("isSorted: " + isSorted(a));
+        show(a);
+    }
+}
+
+```
+小结：插入排序实现简单，容易理解
+特点：
+ 	* 运行时间与输入无关
+ 	* 数据移动最少(N次交换)
+
+***
+
+### 2.插入排序
+思路：从数组起始出建立索引，将索引左侧的元素插入到右侧元素的正确位置使右侧元素保持有序，每插入一个元素索引加一。与选择排序一样，当前索引左边的所有元素是有序的，但它们的最终位置还不确定，为了给更小的元素腾出空间，它们可能会被移动(插入的元素越小移动的次数越多，代价越大)，当索引到达数组右端时，排序完成。
+
+
+```
+// @island
+// 2016-10-23 23:22:54
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+
+public class Insertion extends Template {
+    public static void sort(Comparable[] a) {
+        // 将a[]升序排列
+        int N = a.length;
+        for (int i = 1; i < N; i++) {
+			// 将a[i]插入到索引左侧的正确位置
+            for (int j = i; j > 0 && less(a[j], a[j-1]); j--) {
+                exch(a, j, j-1);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("isSorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+插入排序对部分有序的数组十分高效，也适合小规模数组。
+
+对于随机无重复的主键的数组，插入排序和选择排序的运行时间都是平方级别的。正常情况下插入排序比选择排序快一倍。
+
+***
+### 3.希尔排序
+希尔排序是由插入排序经简单优化得来的。希尔排序的思想是使数组中任意间隔为h的元素都是有序的，这样的数组被称为h有序数组。
+```
+// @island
+// 2016-10-24 13:07:11
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+
+public class Shell extends Template {
+    public static void sort(Comparable[] a) {
+        int N = a.length;
+        int h = 1;
+        while (h < N/3) {
+            h = 3 * h + 1;
+        }
+
+        while (h >= 1) {
+            // 将数组变为h有序
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -= h) {
+                    exch(a, j, j-h);
+                }
+            }
+            h /= 3;
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("isSorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+希尔排序是唯一无法准确描述对于乱序的数组的性能特征的排序方法。目前最重要的结论是它的运行时间达不到平方级别。
+和选择排序以及插入排序形成对比的是，希尔排序可以用在大型数组。而插入排序到希尔排序仅仅做了小小的改变。
+插入排序是h=1的希尔排序
+
+***
+## B.归并排序
+将两个有序数组归并成一个更大的有序数组。归并排序的运行时间与 N*logN 成正比
+### 1.自顶向下的归并排序(递归归并)
+如果能将两个自数组排序，就能通过归并两个子数组来将整个数组排序.递归实现由于递归调用，相对需要占用较大的内存资源。
+```
+// @island
+// 2016-10-24 16:10:24
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+
+public class Merge extends Template {
+    private static Comparable[] aux;  // 归并所需的辅助数组
+
+    public static void sort(Comparable[] a) {
+        aux = new Comparable[a.length];
+        sort(a, 0, a.length - 1);
+    }
+
+    public static void sort(Comparable[] a, int low, int high) {
+        if (high <= low) {
+            return;
+        }
+        int mid = low + (high - low) / 2;
+        sort(a, low, mid);  // 将左半边排序
+        sort(a, mid+1, high);  // 将右半边排序
+        merge(a, low, mid, high);  // 归并结果
+    }
+
+    public static void merge(Comparable[] a, int low, int mid, int high) {
+        int i = low, j = mid + 1;
+
+        // copy a[] to aux[]
+        for (int k = low; k <= high; k++) {
+            aux[k] = a[k];
+        }
+
+        // merge
+        for (int k = low; k <= high; k++) {
+            if (i > mid) {  // 左半边用尽, 取右边的值
+                a[k] = aux[j++];
+            }
+            else if (j > high) {  // 右半边用尽，取左边的值
+                a[k] = aux[i++];
+            }
+            else if (less(aux[j], aux[i])) {  // 左右两边均还有元素，右边的比左边的小，取右边的值
+                a[k] = aux[j++];
+            }
+            else {  // 左右两边均还有元素，右边不小于左边的，取左边的值
+                a[k] = aux[i++];
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("isSorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+
+***
+
+### 2.自低向上的归并排序
+
+```
+// @island
+// 2016-10-24 18:40:21
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+
+
+public class MergeBU extends Template {
+    private static Comparable[] aux;
+
+    public static void sort(Comparable[] a) {
+        int N = a.length;
+        aux = new Comparable[N];
+        for (int size = 1; size < N; size *= 2) {
+            for (int low = 0; low < N - size; low += 2 * size) {
+                merge(a, low, low + size - 1, Math.min(low + size + size - 1, N - 1));
+            }
+        }
+    }
+
+    public static void merge(Comparable[] a, int low, int mid, int high) {
+        int i = low, j = mid + 1;
+
+        // copy a[] to aux[]
+        for (int k = low; k <= high; k++) {
+            aux[k] = a[k];
+        }
+
+        // merge
+        for (int k = low; k <= high; k++) {
+            if (i > mid) {  // 左半边用尽, 取右边的值
+                a[k] = aux[j++];
+            }
+            else if (j > high) {  // 右半边用尽，取左边的值
+                a[k] = aux[i++];
+            }
+            else if (less(aux[j], aux[i])) {  // 左右两边均还有元素，右边的比左边的小，取右边的值
+                a[k] = aux[j++];
+            }
+            else {  // 左右两边均还有元素，右边不小于左边的，取左边的值
+                a[k] = aux[i++];
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("isSorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+自底向上的归并排序比较适合用链表组织的数据。
+归并排序的空间复杂度不是最优的。
+
+***
+
+## C.快速排序
+快速排序被誉为20世纪科学和工程学领域的十大算法之一。
+快速排序是一种分治的排序算法，它将一个数组分成两个子数组，将两部分独立地排序。快速排序和归并排序是互补的：归并排序将数组分成两个字数组分别排序，并将有序的自数组归并以将整个数组排序;而快速排序将数组排序的方式则是当两个子数组都有序时，整个数组也就自然有序了。在第一种情况，递归调用发生在处理整个数组之前，在第二种情况，递归调用发生在处理整个数组之后。在归并排序中，一个数组被分成半，在快速排序中，切分的位置取决于数组的内容。
+
+### 1.标准快速排序
+```
+// @island
+// 2016-10-24 16:29:39
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.In;
+
+public class Quick extends Template {
+    public static void sort(Comparable[] a) {
+        StdRandom.shuffle(a);  // 打乱数组，消除对输入的依赖
+        sort(a, 0, a.length-1);
+    }
+
+    public static void sort(Comparable[] a, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int j = partition(a, low, high);
+        sort(a, low, j-1);
+        sort(a, j+1, high);
+    }
+
+    private static int partition(Comparable[] a, int low, int high) {
+        int i = low, j = high + 1;
+        Comparable v = a[low];
+
+        while (true) {
+            while (less(a[++i], v)) {
+                if (i == high) {
+                    break;
+                }
+            }
+
+            while (less(v, a[--j])) {
+                if (j == low) {
+                    break;
+                }
+            }
+
+            if (i >= j) break;
+            exch(a, i, j);
+        }
+        exch(a, low, j);
+        return j;
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("is sorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+快速排序的重点在于切分，如果切分不平衡，程序可能会变得极为低效。
+
+****
+
+### 2.三向切分的快速排序
+```
+// @island
+// 2016-10-24 22:14:41
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdRandom;
+
+
+public class Quick3way extends Template {
+
+    public static void sort(Comparable[] a) {
+        StdRandom.shuffle(a);
+        sort(a, 0, a.length-1);
+    }
+
+    private static void sort(Comparable[] a, int low, int high) {
+        if (high <= low) return;
+
+        int lt = low, i = low + 1, gt = high;
+        Comparable v = a[low];
+        while (i <= gt) {
+            int cmp = a[i].compareTo(v);
+            if (cmp < 0) {
+                exch(a, lt++, i++);
+            }
+            else if(cmp > 0) {
+                exch(a, i, gt--);
+            }
+            else i++;
+        }
+        sort(a, low, lt - 1);
+        sort(a, gt + 1, high);
+    }
+
+    public static void main(String[] args) {
+        String[] a = In.readStrings();
+        sort(a);
+        StdOut.println("is sorted: " + isSorted(a));
+        show(a);
+    }
+}
+```
+对于存在大量重复元素的数组，这种方法比标准的快速排序快得多。
+
+*****
+###总结：
+### 稳定的排序
+>	* 冒泡排序（bubble sort）— O(n2)
+>	* 插入排序（insertion sort）—O(n2)
+>	* 桶排序（bucket sort）—O(n)；需要O(k)额外空间
+>	* 计数排序（counting sort）—O(n+k)；需要O(n+k)额外空间
+>	* 归并排序（merge sort）—O(n log n)；需要O(n)额外空间
+>	* 原地归并排序— O(n log2 n)如果使用最佳的现在版本
+>	* 二叉排序树排序（binary tree sort）— O(n log n)期望时间；O(n2)最坏时间；需要O(n)额外空间
+>	* 块排序（block sort）— O(n log n)
+
+### 不稳定的排序
+>	* 选择排序（selection sort）—O(n2)
+>	* 希尔排序（shell sort）—O(n log2 n)如果使用最佳的现在版本
+>	* Clover排序算法（Clover sort）—O(n)期望时间，O(n2)最坏情况
+>	* 堆排序（heap sort）—O(n log n)
+>	* 快速排序（quick sort）—O(n log n)期望时间，O(n2)最坏情况；对于大的、随机数列表一般相信是最快的已知排序
+
+
+在java系统库中，原始数据类型的排序算法是(三向切分的)快速排序，对于引用类型使用的是归并排序。
+	
+
+****
+参考：
+http://blog.csdn.net/hguisu/article/details/7776068
+https://visualgo.net/
